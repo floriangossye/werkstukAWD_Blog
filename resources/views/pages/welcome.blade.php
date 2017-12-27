@@ -1,4 +1,5 @@
 @extends('main')
+@section('title','| Florian Gossye')
 @section('content')
     <div class="row">
         <div class="col-md-12">
