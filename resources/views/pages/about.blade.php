@@ -79,9 +79,9 @@
 
     <div class="content">
         <div class="title m-b-md">
-            Over mezelf
+            {{$data['full']}}
         </div>
-        <p>About landing page</p>
+        <p>email me @ {{$data['email']}} </p>
 
 
     </div>
