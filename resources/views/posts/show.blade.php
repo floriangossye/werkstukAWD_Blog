@@ -9,16 +9,16 @@
         <div class="col-md-4">
             <div class="well">
                 <dl class="dl-horizontal">
-                    <dt>Url:</dt>
-                    <dd><a href="{{url('$post->slug'}}"></a></dd>
+                    <label>Url:</label>
+                    <p><a href="{{ url($post->slug)}}">{{url($post->slug)}}</a></p>
                 </dl>
                 <dl class="dl-horizontal">
-                    <dt>Create at:</dt>
-                    <dd>{{date('j M Y H:i', strtotime($post->created_at)) }}</dd>
+                    <label>Create at:</label>
+                    <p>{{date('j M Y H:i', strtotime($post->created_at)) }}</p>
                 </dl>
                 <dl class="dl-horizontal">
-                    <dt>Last updated:</dt>
-                    <dd>{{date('j M Y H:i',strtotime($post->updated_at)) }}</dd>
+                    <label>Last updated:</label>
+                    <p>{{date('j M Y H:i',strtotime($post->updated_at)) }}</p>
                 </dl>
                 <hr>
                 <div class="row">

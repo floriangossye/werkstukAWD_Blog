@@ -40,7 +40,7 @@ class PostController extends Controller
         //function to validate data
         $this->validate($request, array(
             'title' => 'required|max:255',
-            'slug' => 'required|alpha_dash|min:5|max:255',
+            'slug' => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
             'body' => 'required'
 
         ));
@@ -91,11 +91,13 @@ class PostController extends Controller
     {
         $this->validate($request, array(           //validate the updated data
             'title' => 'required|max:255',
+            'slug' => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
             'body' => 'required'
 
         ));
         $post = Post::find($id);                     //search for the post from DB
         $post->title = $request->input('title');
+        $post->slug = $request->input('slug');
         $post->body = $request->input('body');
         $post->save();                               //Saves post to DB
 
