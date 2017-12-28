@@ -3,17 +3,17 @@
 @section('content')
     <div class="row">
         <div class="col-md-8">
-    <h1>{{$post->title}}</h1>
-    <p class="lead">{{$post->body}}</p>
+            <h1>{{$post->title}}</h1>
+            <p class="lead">{{$post->body}}</p>
         </div>
         <div class="col-md-4">
             <div class="well">
-               <dl class="dl-horizontal">
-                   <dt>Create at: </dt>
-                   <dd>{{date('j M Y H:i', strtotime($post->created_at)) }}</dd>
-               </dl>
                 <dl class="dl-horizontal">
-                    <dt>Last updated: </dt>
+                    <dt>Create at:</dt>
+                    <dd>{{date('j M Y H:i', strtotime($post->created_at)) }}</dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>Last updated:</dt>
                     <dd>{{date('j M Y H:i',strtotime($post->updated_at)) }}</dd>
                 </dl>
                 <hr>
@@ -23,15 +23,19 @@
 
                     </div>
                     <div class="col-sm-6">
-                        <div class="col-m-6">
-                            {!! Form::open(['route'=>['posts.destroy',$post->id],'method'=>'delete']) !!}
-                            {!! Form::submit('Delete',['class'=>'btn btn-danger btn-block']) !!}
-                            {!! Form::close() !!}
-                        </div>
+
+                        {!! Form::open(['route'=>['posts.destroy',$post->id],'method'=>'delete']) !!}
+                        {!! Form::submit('Delete',['class'=>'btn btn-danger btn-block']) !!}
+                        {!! Form::close() !!}
+
                     </div>
                 </div>
-
+                <div class="row">
+                    <div class="col-md-12">
+                        {{Html::linkroute('posts.index','<- View All Posts',[], ['class'=>'btn btn default btn-block btn-h1-spacing'])}}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    @endsection
+@endsection
