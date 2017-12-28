@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Post;
 use Illuminate\Http\Request;
 use Session;
@@ -14,7 +15,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('id','desc')->paginate(5);                                        //all the blog posts variable
+        $posts = Post::orderBy('id', 'desc')->paginate(5);                                        //all the blog posts variable
         return view('posts.index')->withPosts($posts);          //placing posts into the view
     }
 
@@ -31,7 +32,7 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -39,24 +40,26 @@ class PostController extends Controller
         //function to validate data
         $this->validate($request, array(
             'title' => 'required|max:255',
+            'slug' => 'required|alpha_dash|min:5|max:255',
             'body' => 'required'
 
         ));
         //Saving to DB
         $post = new Post;
         $post->title = $request->title;
+        $post->slug = $request->slug;
         $post->body = $request->body;
 
         $post->save();
-        Session::flash('success','post succesfully saves!');
+        Session::flash('success', 'post succesfully saves!');
         //Redirecting
-        return redirect()->route('posts.show',$post->id);
+        return redirect()->route('posts.show', $post->id);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -68,20 +71,20 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $post= Post::find($id);   //find post by id
+        $post = Post::find($id);   //find post by id
         return view('posts.edit')->withPost($post);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -98,14 +101,14 @@ class PostController extends Controller
 
         Session::flash('success', 'This post was succesfully saved');   //flash message onsave
 
-        return redirect()->route('posts.show',$post->id);        //redirecting to showing updated post
+        return redirect()->route('posts.show', $post->id);        //redirecting to showing updated post
 
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
