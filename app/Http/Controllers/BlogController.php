@@ -12,6 +12,6 @@ class BlogController extends Controller
         $post= Post::where('slug','=',$slug)->first();
 
         //return the view with the slug url
-        return view(blog.single)->withPost($post);
+        return view('blog.single')->withPost($post);
     }
 }
