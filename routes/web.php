@@ -20,12 +20,13 @@ Route::get('post', 'PagesController@getPost');
 Route::get('/', 'PagesController@getIndex');
 Route::resource('posts', 'PostController');
 
-Route::get('auth/login', 'Auth\LoginController@showLoginForm');
+Route::get('auth/login', ['as'=>'login','uses'=>'Auth\LoginController@showLoginForm']);
 Route::post('auth/login', 'Auth\LoginController@login');
-Route::post('auth/login', 'Auth\LoginController@logout');
+//Route::post('auth/logout', 'Auth\LoginController@logout');
+Route::get('auth/logout', ['as'=>'logout','uses'=>'Auth\LoginController@logout']);
 
 Route::get('auth/register', 'Auth\RegisterController@showRegistrationForm');
 Route::post('auth/register', 'Auth\RegisterController@register');
-//Auth::routes();
+
 
 //Route::get('/home', 'HomeController@index')->name('home');
