@@ -10,10 +10,22 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('blog/{slug}', ['as' => 'blog.single','uses'=>'BlogController@getSingle'])->where('slug', '[\w\d\-\_]+');
-Route::get('blog/',['uses'=>'BlogController@getIndex','as' => 'blog.index']);
-Route::get('about','PagesController@getAbout');
-Route::get('post','PagesController@getPost');
-Route::get('/', 'PagesController@getIndex');
-Route::resource('posts','PostController');
 
+
+//Post links
+Route::get('blog/{slug}', ['as' => 'blog.single', 'uses' => 'BlogController@getSingle'])->where('slug', '[\w\d\-\_]+');
+Route::get('blog/', ['uses' => 'BlogController@getIndex', 'as' => 'blog.index']);
+Route::get('about', 'PagesController@getAbout');
+Route::get('post', 'PagesController@getPost');
+Route::get('/', 'PagesController@getIndex');
+Route::resource('posts', 'PostController');
+
+Route::get('auth/login', 'Auth\LoginController@showLoginForm');
+Route::post('auth/login', 'Auth\LoginController@login');
+Route::post('auth/login', 'Auth\LoginController@logout');
+
+Route::get('auth/register', 'Auth\RegisterController@showRegistrationForm');
+Route::post('auth/register', 'Auth\RegisterController@register');
+//Auth::routes();
+
+//Route::get('/home', 'HomeController@index')->name('home');
