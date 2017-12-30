@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class CategoryController extends Controller
 {
@@ -39,7 +40,17 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,array(        //Form validation for the category
+            'name' => 'required|max:255'
+        ));
+        $category = new Category;              //Instatiate category
+
+        $category->name = $request->name;      //add the category name
+        $category->save();                     //save to DB
+
+        Session::flash('success', 'new category added');        //Flash message onsucces
+
+        return redirect()->route('categories.index');       //redirect to categories index page
     }
 
     /**

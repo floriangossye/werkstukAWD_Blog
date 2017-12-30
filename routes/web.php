@@ -35,5 +35,5 @@ Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 //Categories routes
-Route::resource('categories','CategoryController');
+Route::resource('categories','CategoryController',['except'=>['create']]);
 
