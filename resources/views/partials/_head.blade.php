@@ -1,4 +1,3 @@
-
 <head>
     <title>@yield('title')</title>
     <!-- Required meta tags -->

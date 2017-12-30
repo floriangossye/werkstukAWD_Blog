@@ -20,13 +20,21 @@ Route::get('post', 'PagesController@getPost');
 Route::get('/', 'PagesController@getIndex');
 Route::resource('posts', 'PostController');
 
+//Login routes
 Route::get('auth/login', ['as'=>'login','uses'=>'Auth\LoginController@showLoginForm']);
 Route::post('auth/login', 'Auth\LoginController@login');
-//Route::post('auth/logout', 'Auth\LoginController@logout');
 Route::get('auth/logout', ['as'=>'logout','uses'=>'Auth\LoginController@logout']);
-
-Route::get('auth/register', 'Auth\RegisterController@showRegistrationForm');
+//Register routes
+Route::get('auth/register', ['as'=>'register','uses'=>'Auth\RegisterController@showRegistrationForm']);
 Route::post('auth/register', 'Auth\RegisterController@register');
+
+//Password resets
+
+Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+
 
 
 //Route::get('/home', 'HomeController@index')->name('home');
