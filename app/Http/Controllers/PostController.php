@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Post;
 use Illuminate\Http\Request;
 use Session;
@@ -31,7 +32,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        $categories = Category::all();
+        return view('posts.create')->withCategories($categories);
     }
 
     /**
@@ -46,6 +48,7 @@ class PostController extends Controller
         $this->validate($request, array(
             'title' => 'required|max:255',
             'slug' => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
+            'category_id' => 'required|integer',
             'body' => 'required'
 
         ));
@@ -53,6 +56,7 @@ class PostController extends Controller
         $post = new Post;
         $post->title = $request->title;
         $post->slug = $request->slug;
+        $post->category_id = $request->category_id;
         $post->body = $request->body;
 
         $post->save();
@@ -82,7 +86,13 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);   //find post by id
-        return view('posts.edit')->withPost($post);
+        $categories = Category::all();
+        $cats=[];
+        foreach ($categories as $category)
+        {
+            $cats [$category->id] = $category->name;
+        }
+        return view('posts.edit')->withPost($post)->withCategories($cats);
     }
 
     /**
