@@ -6,6 +6,7 @@ use App\Category;
 use App\Post;
 use Illuminate\Http\Request;
 use Session;
+use App\Tag;
 
 class PostController extends Controller
 {
@@ -33,7 +34,8 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('posts.create')->withCategories($categories);
+        $tags = Tag::all();
+        return view('posts.create')->withCategories($categories)->withTags($tags);
     }
 
     /**
@@ -44,6 +46,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+
         //function to validate data
         $this->validate($request, array(
             'title' => 'required|max:255',
@@ -60,6 +63,9 @@ class PostController extends Controller
         $post->body = $request->body;
 
         $post->save();
+
+        $post->tags()->sync($request->tags, false);
+
         Session::flash('success', 'post succesfully saves!');
         //Redirecting
         return redirect()->route('posts.show', $post->id);
@@ -87,12 +93,17 @@ class PostController extends Controller
     {
         $post = Post::find($id);   //find post by id
         $categories = Category::all();
-        $cats=[];
-        foreach ($categories as $category)
-        {
+        $cats = array();
+        foreach ($categories as $category) {
             $cats [$category->id] = $category->name;
         }
-        return view('posts.edit')->withPost($post)->withCategories($cats);
+
+        $tags = Tag::all();
+        $tags2 = array();
+        foreach ($tags as $tag) {
+            $tags2[$tag->id] = $tag->name;
+        }
+        return view('posts.edit')->withPost($post)->withCategories($cats)->withTags($tags2);
     }
 
     /**
@@ -105,14 +116,13 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         $post = Post::find($id);
-        if($request->input('slug') == $post->slug )
-        {
+        if ($request->input('slug') == $post->slug) {
             $this->validate($request, array(           //validate the updated data
                 'title' => 'required|max:255',
                 'body' => 'required'
 
             ));
-        }else{
+        } else {
             $this->validate($request, array(           //validate the updated data
                 'title' => 'required|max:255',
                 'slug' => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
@@ -125,7 +135,15 @@ class PostController extends Controller
         $post->title = $request->input('title');
         $post->slug = $request->input('slug');
         $post->body = $request->input('body');
-        $post->save();                               //Saves post to DB
+
+        $post->save();     //Saves post to DB
+
+        if ($request->tags) {
+            $post->tags()->sync($request->tags);
+        } else {
+            $post->tags()->sync(array());
+        }
+
 
         Session::flash('success', 'This post was succesfully saved');   //flash message onsave
 
@@ -142,8 +160,12 @@ class PostController extends Controller
     public function destroy($id)
     {
         $post = Post::find($id);
+        $post->tags()->detach();
+
         $post->delete();
+
         Session::flash('success', 'This post was succesfully deleted');
+
         return redirect()->route('posts.index');
     }
 }

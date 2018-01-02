@@ -13,7 +13,8 @@
 
     <div class="row">
         <div class="col-md-12">
-            <form>
+            <form action="{{url('about')}}" method="POST">
+                {{csrf_field()}}
                 <div class="form-group">
                     <label name="email">Email:</label>
                     <input id="email" name="email" class="form-control">
