@@ -14,7 +14,7 @@
         <div class=" col-md-8 offset-md-2">
             <h1>Create Post</h1>
             <hr>
-        {!! Form::open(array('route' => 'posts.store','data-parsley-validate'=>'')) !!}
+        {!! Form::open(array('route' => 'posts.store','data-parsley-validate'=>'','files'=>'true')) !!}
 
         {{Form::label('title','Title:')}}
         {{Form::text('title',null,array('class'=>'form-control','required' => '','maxlength'=>'255'))}}
@@ -35,7 +35,9 @@
                     <option value="{{$tag->id}}">{{$tag->name}}</option>
                 @endforeach
             </select>
-
+            {{Form::label('featured_image','Upload Image:')}}
+            {{Form::file('featured_image')}}
+<br>
             {{Form::label('body','Post:')}}
             {{Form::textarea('body',null,array('class'=>'form-control','id'=>'bodyField','required' => ''))}}
             @ckeditor('bodyField')
