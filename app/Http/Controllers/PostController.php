@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Mews\Purifier\Purifier;
 use Session;
 use App\Tag;
 use Image;
+use Illuminate\Auth\Access\Gate;
 
 
 
@@ -107,6 +109,14 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);   //find post by id
+
+        if(!Auth::user()->hasRole('admin')){
+            if(Gate::denies('update-post',$post)){
+                return abort(403,'Action is unauthorized');
+            }
+        }
+
+
         $categories = Category::all();
         $cats = array();
         foreach ($categories as $category) {
