@@ -23,7 +23,8 @@
             {{Form::select('tags[]', $tags ,null,['class'=>'form-control select2-multi','multiple'=>'multiple'])}}
 
             {{Form::label('body','Body:',['class'=>'form-spacing-top'])}}
-            {{Form::textarea('body', null,["class"=> 'form-control'])}}
+            {{Form::textarea('body', null,["class"=> 'form-control','id'=>'bodyField'])}}
+            @ckeditor('bodyField')
         </div>
     </div>
 
