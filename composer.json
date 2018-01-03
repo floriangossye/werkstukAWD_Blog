@@ -6,10 +6,12 @@
     "type": "project",
     "require": {
         "php": ">=5.6.4",
+        "flynsarmy/csv-seeder": "1.0.*",
+        "intervention/image": "^2.4",
+        "jeroennoten/laravel-ckeditor": "^3.8",
         "laravel/framework": "5.4.*",
-        "laravelcollective/html":"^5.4.0",
         "laravel/tinker": "~1.0",
-        "flynsarmy/csv-seeder": "1.0.*"
+        "laravelcollective/html": "^5.4.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

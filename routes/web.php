@@ -12,7 +12,7 @@
 */
 
 
-//Post links
+//Post routes
 Route::get('blog/{slug}', ['as' => 'blog.single', 'uses' => 'BlogController@getSingle'])->where('slug', '[\w\d\-\_]+');
 Route::get('blog/', ['uses' => 'BlogController@getIndex', 'as' => 'blog.index']);
 Route::get('about', 'PagesController@getAbout');
@@ -25,6 +25,7 @@ Route::resource('posts', 'PostController');
 Route::get('auth/login', ['as'=>'login','uses'=>'Auth\LoginController@showLoginForm']);
 Route::post('auth/login', 'Auth\LoginController@login');
 Route::get('auth/logout', ['as'=>'logout','uses'=>'Auth\LoginController@logout']);
+
 //Register routes
 Route::get('auth/register', ['as'=>'register','uses'=>'Auth\RegisterController@showRegistrationForm']);
 Route::post('auth/register', 'Auth\RegisterController@register');
@@ -42,4 +43,8 @@ Route::resource('categories','CategoryController',['except'=>['create']]);
 Route::resource('tags','TagController',['except'=>['create']]);
 
 //Comment routes
-Route::post('comments/{post_id}', ['uses'=>'CommentsController@store','as'=>'comments.store']);
+Route::post('comments/{post_id}', ['uses' => 'CommentsController@store', 'as' => 'comments.store']);
+Route::get('comments/{id}/edit', ['uses' => 'CommentsController@edit', 'as' => 'comments.edit']);
+Route::put('comments/{id}', ['uses' => 'CommentsController@update', 'as' => 'comments.update']);
+Route::delete('comments/{id}', ['uses' => 'CommentsController@destroy', 'as' => 'comments.destroy']);
+Route::get('comments/{id}/delete', ['uses' => 'CommentsController@delete', 'as' => 'comments.delete']);

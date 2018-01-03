@@ -4,6 +4,9 @@
 @section('stylesheets')
     {!! Html::style('css/parsley.css') !!}
     {!! Html::style('css/select2.min.css') !!}
+
+
+
 @endsection
 @section('content')
 
@@ -34,8 +37,8 @@
             </select>
 
             {{Form::label('body','Post:')}}
-            {{Form::textarea('body',null,array('class'=>'form-control','required' => ''))}}
-
+            {{Form::textarea('body',null,array('class'=>'form-control','id'=>'bodyField','required' => ''))}}
+            @ckeditor('bodyField')
             {{Form::submit('Create Post',array('class'=>'btn btn-success btn-lg btn-block','style'=> 'margin-top:20px;'))}}
             {!! Form::close() !!}
         </div>
@@ -46,6 +49,5 @@
     {!! Html::script('js/select2.min.js') !!}
     <script type="text/javascript">
         $('.select2-multi').select2();
-
     </script>
 @endsection
