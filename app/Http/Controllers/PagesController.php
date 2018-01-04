@@ -6,6 +6,10 @@ use App\Post;
 use Illuminate\Http\Request;
 use Mail;
 use Session;
+use Charts;
+use App\User;
+
+
 
 class PagesController extends Controller
 {
@@ -16,10 +20,7 @@ class PagesController extends Controller
         return view('pages.welcome')->withPosts($posts);
     }
 
-    public function getDashboard()
-    {
-        return view('admin.dashboard');
-    }
+
 
     public function getAbout()
     {

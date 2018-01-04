@@ -36,9 +36,10 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{route('posts.index')}}">Posts</a>
+                        @if(Auth::user()->hasRole('admin'))
                         <a class="dropdown-item" href="{{route('categories.index')}}">Categories</a>
                         <a class="dropdown-item" href="{{route('tags.index')}}">Tags</a>
-                        @if(Auth::user()->hasRole('admin'))
+
                         <a class="dropdown-item" href="/dashboard">Admin Dashboard</a>
                         @endif
                         <div class="dropdown-divider"></div>
