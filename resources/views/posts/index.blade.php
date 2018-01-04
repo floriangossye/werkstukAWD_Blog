@@ -25,16 +25,22 @@
                     <th></th>
                     </thead>
                     <tbody>
+
                     @foreach($posts as $post)
                         <tr>
                             <th>{{$post->id}}</th>
                             <td>{{$post->title}}</td>
                             <td>{{substr(strip_tags($post->body),0,75)}}{{ strlen(strip_tags($post->body)) > 75 ? "..." : "" }}</td>
                             <td>{{date('j M Y', strtotime($post->created_at))}}</td>
-                            <td><a href="{{ route('posts.show',$post->id) }}" class="btn btn-default">View</a><a href="{{ route('posts.edit',$post->id) }}" class="btn btn-default">Edit</a>
 
+
+                            <td><a href="{{ route('posts.show',$post->id) }}" class="btn btn-default">View</a><a href="{{ route('posts.edit',$post->id) }}" class="btn btn-default">Edit</a></td>
+
+
+                            @endforeach
                         </tr>
-                    @endforeach
+
+
                     </tbody>
                 </table>
                 <div class="text-center pagination">

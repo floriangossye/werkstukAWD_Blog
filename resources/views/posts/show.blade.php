@@ -56,6 +56,8 @@
                     <p>{{date('j M Y H:i',strtotime($post->updated_at)) }}</p>
                 </dl>
                 <hr>
+
+
                 <div class="row">
                     <div class="col-sm-6">
                         {!! Html::linkRoute('posts.edit','Edit', array($post->id),array('class'=>'btn btn-primary btn-block')) !!}
@@ -69,6 +71,7 @@
 
                     </div>
                 </div>
+
                 <div class="row">
                     <div class="col-md-12">
                         {{Html::linkroute('posts.index','<- View All Posts',[], ['class'=>'btn btn default btn-block btn-h1-spacing'])}}

@@ -11,7 +11,7 @@ use Mews\Purifier\Purifier;
 use Session;
 use App\Tag;
 use Image;
-use Illuminate\Auth\Access\Gate;
+
 
 
 
@@ -29,7 +29,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('id', 'desc')->paginate(5);                                        //all the blog posts variable
+        $posts = Post::orderBy('id', 'desc')->paginate(5);
+                                                                   //all the blog posts variable
         return view('posts.index')->withPosts($posts);          //placing posts into the view
     }
 
@@ -109,12 +110,6 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);   //find post by id
-
-        if(!Auth::user()->hasRole('admin')){
-            if(Gate::denies('update-post',$post)){
-                return abort(403,'Action is unauthorized');
-            }
-        }
 
 
         $categories = Category::all();

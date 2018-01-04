@@ -16,6 +16,11 @@ class PagesController extends Controller
         return view('pages.welcome')->withPosts($posts);
     }
 
+    public function getDashboard()
+    {
+        return view('admin.dashboard');
+    }
+
     public function getAbout()
     {
         $first = 'Florian';
@@ -44,10 +49,10 @@ class PagesController extends Controller
 
         $data = array(
             'email' => $request->email,
-            'subject'=>$request->subject,
-            'bodyMessage'=>$request->message
+            'subject' => $request->subject,
+            'bodyMessage' => $request->message
         );
-        Mail::send('emails.about',$data,function($message) use ($data){
+        Mail::send('emails.about', $data, function ($message) use ($data) {
             $message->from($data['email']);
             $message->to('hello@awd.io');
             $message->subject($data['subject']);

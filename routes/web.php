@@ -19,6 +19,7 @@ Route::get('about', 'PagesController@getAbout');
 Route::post('about', 'PagesController@postContact');
 Route::get('post', 'PagesController@getPost');
 Route::get('/', 'PagesController@getIndex');
+Route::get('dashboard', 'PagesController@getDashboard');
 Route::resource('posts', 'PostController');
 
 //Login routes

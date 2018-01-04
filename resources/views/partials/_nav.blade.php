@@ -38,6 +38,9 @@
                         <a class="dropdown-item" href="{{route('posts.index')}}">Posts</a>
                         <a class="dropdown-item" href="{{route('categories.index')}}">Categories</a>
                         <a class="dropdown-item" href="{{route('tags.index')}}">Tags</a>
+                        @if(Auth::user()->hasRole('admin'))
+                        <a class="dropdown-item" href="/dashboard">Admin Dashboard</a>
+                        @endif
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{route('logout')}}">Logout</a>
                     </div>
