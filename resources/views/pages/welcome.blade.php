@@ -7,7 +7,7 @@
                 <h1 class="display-3">Florian Gossye</h1>
                 <p class="lead">Welcome to my official blog</p>
                 <hr class="my-4">
-                <p>Please register before posting blogposts</p>
+                <p>Please follow along & get creative</p>
                 <p class="lead">
 
                 </p>
