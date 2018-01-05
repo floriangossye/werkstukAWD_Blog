@@ -4,8 +4,7 @@
     <div class="row">
         <div class="col-md-12">
             <h1>Contact me</h1>
-            <p>Lorem ipsum
-                suuizefezfiuerejfreuifrejiferifjierjkefksnfjkqdnjksfdsfjkqfjksqfhjkfqhjkhjhjkf,kqhfjqfjkhdsqfdsqjkfhqskd</p>
+            <p>If you need to contact me please fill in the form en I will reply asap</p>
         </div>
     </div>
 

@@ -60,6 +60,7 @@
 
                 <div class="row">
                     <div class="col-sm-6">
+                        @if(Auth::user()->hasRole('admin'))
                         {!! Html::linkRoute('posts.edit','Edit', array($post->id),array('class'=>'btn btn-primary btn-block')) !!}
 
                     </div>
@@ -67,6 +68,7 @@
 
                         {!! Form::open(['route'=>['posts.destroy',$post->id],'method'=>'delete']) !!}
                         {!! Form::submit('Delete',['class'=>'btn btn-danger btn-block']) !!}
+                        @endif
                         {!! Form::close() !!}
 
                     </div>

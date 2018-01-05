@@ -13,6 +13,9 @@
     </div>
 </div>
 <div class="row">
+    <div class="col-md-12">
+
+</div>
     <div class="col-md-8 col-md-offset-2">
         <h3 class="comments-title"><span class="glyphicon glyphicon-comment"></span>   {{$post->comments()->count()}} Comments</h3>
         @foreach($post->comments as $comment)

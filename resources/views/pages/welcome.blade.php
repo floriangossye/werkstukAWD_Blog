@@ -5,12 +5,11 @@
         <div class="col-md-12">
             <div class="jumbotron">
                 <h1 class="display-3">Florian Gossye</h1>
-                <p class="lead">Welcome to my official portfolio</p>
+                <p class="lead">Welcome to my official blog</p>
                 <hr class="my-4">
-                <p>It uses utility classes for typography and spacing to space content out within the larger
-                    container.</p>
+                <p>Please register before posting blogposts</p>
                 <p class="lead">
-                    <a class="btn btn-primary btn-lg" href="#" role="button">Latest Project</a>
+
                 </p>
             </div>
         </div>
@@ -26,9 +25,7 @@
                 <hr>
             @endforeach
         </div>
-        <div class="col-md-3 col-md-offset-1">
-            <h2>Sidebar</h2>
-        </div>
+
     </div>
 @endsection
 

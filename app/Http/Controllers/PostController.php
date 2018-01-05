@@ -200,4 +200,12 @@ class PostController extends Controller
 
         return redirect()->route('posts.index');
     }
+
+    public function getLikeItem($id)
+    {
+        $post = Post::where('id', $id)->first();
+        $like = new Like();
+        $post->likes()->save($like);
+        return redirect()->back();
+    }
 }

@@ -50,6 +50,12 @@ Route::get('comments/{id}/edit', ['uses' => 'CommentsController@edit', 'as' => '
 Route::put('comments/{id}', ['uses' => 'CommentsController@update', 'as' => 'comments.update']);
 Route::delete('comments/{id}', ['uses' => 'CommentsController@destroy', 'as' => 'comments.destroy']);
 Route::get('comments/{id}/delete', ['uses' => 'CommentsController@delete', 'as' => 'comments.delete']);
+
+//Likes routes
+Route::get('post/{id}/Like', [
+    'uses' => 'PostController@getLikeItem',
+    'as' => 'blog.post.like'
+]);
 Auth::routes();
 
 //Route::get('/', 'HomeController@index');

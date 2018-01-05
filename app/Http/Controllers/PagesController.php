@@ -20,8 +20,6 @@ class PagesController extends Controller
         return view('pages.welcome')->withPosts($posts);
     }
 
-
-
     public function getAbout()
     {
         $first = 'Florian';

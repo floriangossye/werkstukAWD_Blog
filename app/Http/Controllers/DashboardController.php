@@ -10,10 +10,10 @@ use App\User;
 
 class DashboardController extends Controller
 {
+
+
     public function getDashboard()
     {
-
-
         $chart = Charts::database(Post::all(), 'bar', 'highcharts')
             ->title('Posts added overview')
             ->elementLabel("Total")
@@ -39,4 +39,7 @@ class DashboardController extends Controller
 
         return view('admin.dashboard',['chart' => $chart , 'chart2'=> $chart2, 'chart3'=> $chart3]);
     }
+
+
+
 }
